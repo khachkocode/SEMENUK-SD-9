@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{% block title %}{% if question %}Polls | {{ question}} {% else %} Polls
+			{% endif %}{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
+	<body>
+		{% if messages %} {% for message in messages %} {{ message }} {% endfor %}
+		{% endif %} {% block header %}
+
+		<header>
+			<nav>
+				<li>
+					<a href="{% url 'polls:index' %}" class="btn-home">Home</a>
+				</li>
+			</nav>
+		</header>
+		{% endblock %}
+
+		<main>{% block content %} {% endblock %}</main>
+	</body>
+</html>

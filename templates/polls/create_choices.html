@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!--  -->
+{% block content %}
+
+<h1>Add Choices for {{ question.question_text }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <!--  -->
+  {{ formset.management_form }}
+  <!--  -->
+  {% for form in formset.forms %}
+  <div>
+    {% for hidden in form.hidden_fields %}
+    <!--  -->
+    {{ hidden }}
+    <!--  -->
+    {% endfor %}
+    <!--  -->
+    {{ form.choice_text.label }}
+    <!--  -->
+    {{ form.choice_text }}
+  </div>
+  {% endfor %}
+  <button type="submit">Save Choices</button>
+</form>
+
+{% endblock %}
